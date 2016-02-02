@@ -26,7 +26,8 @@ html, body {
 .intro {
   position: relative;
   font-size: 1.5em;
-  text-align: center; }
+  text-align: center;
+  top: 2em; }
 
 .container {
   width: 100%;
@@ -40,25 +41,25 @@ html, body {
 .fruit5 {
   width: 60%;
   margin: 0 auto;
-  border: .1em solid orange;
   height: 30em;
+  color: #333;
   margin-top: 5em;
   background-color: #fff; }
 
 .fruit1 {
-  color: #F8BA53; }
+  border: .3em solid #FFC0C0; }
 
 .fruit2 {
-  color: #F89924; }
+  border: .3em solid #D8C0FF; }
 
 .fruit3 {
-  color: #F36321; }
+  border: .3em solid #C0EBFF; }
 
 .fruit4 {
-  color: #F6BE84; }
+  border: .3em solid #C0FFC2; }
 
 .fruit5 {
-  color: #F68459; }
+  border: .3em solid #FFFAC0; }
 
 .question {
   width: 80%;
