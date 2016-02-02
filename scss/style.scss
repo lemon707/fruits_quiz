@@ -1,0 +1,99 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+html, body {
+  background-color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  width: 100%;
+  height: 100%;
+  color: #333;
+}
+
+.intro {
+  position: relative;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.fruit1,
+.fruit2,
+.fruit3,
+.fruit4,
+.fruit5 {
+  width: 60%;
+  margin: 0 auto;
+  border: .1em solid orange;
+  height: 30em;
+  margin-top: 5em;
+  background-color: #fff;
+}
+
+.fruit1 {
+  color: #F8BA53;
+}
+.fruit2 {
+  color: #F89924;
+}
+.fruit3 {
+  color: #F36321;
+}
+.fruit4 {
+  color: #F6BE84;
+}
+.fruit5 {
+  color: #F68459;
+}
+
+.question {
+  width: 80%;
+  position: relative;
+  top: 20%;
+  font-size: 1.2em;
+  line-height: 1.7em;
+  margin: 0 auto;
+  text-align: center;
+}
+
+form {
+  top: 30%;
+  position: relative;
+  margin: 0 auto;
+  left: 40%;
+}
+
+input {
+  margin-top: 1.2em;
+}
+
+footer .container {
+  margin-top: 10em;
+}
+.source {
+  text-align: center;
+}
