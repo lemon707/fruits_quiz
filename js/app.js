@@ -1,22 +1,22 @@
 var questions = [],
   one = {
-    id: 1,
+    id: 'Q1',
     answer: 'blueberries'
   },
   two = {
-    id: 2,
+    id: 'Q2',
     answer: 'oranges'
   },
   three = {
-    id: 3,
+    id: 'Q3',
     answer: 'grapes'
   },
   four = {
-    id: 4,
+    id: 'Q4',
     answer: 'cranberries'
   },
   five = {
-    id: 5,
+    id: 'Q5',
     answer: 'strawberries'
   },
   score = 0,
@@ -28,41 +28,67 @@ questions.push(three);
 questions.push(four);
 questions.push(five);
 
-var value1 = document.querySelector('input[name="Q1_answer"]:checked').value;
 
-var value2 = document.querySelector('input[name="Q2_answer"]:checked').value;
+var options = document.querySelectorAll('input[type="radio"]');
 
-var value3 = document.querySelector('input[name="Q3_answer"]:checked').value;
+for (var i = 0; i < options.length; i += 1) {
+  
+  options[i].addEventListener('click', function() {
+    
+    var formID = this.parentNode.parentNode.id;
 
-var value4 = document.querySelector('input[name="Q4_answer"]:checked').value;
+    var input = this;
 
-var value5 = document.querySelector('input[name="Q5_answer"]:checked').value;
+    checkQuestion(formID, this.value);
+  
+  });
 
-var valueFunc = function (value, question) {
+}
 
-    console.log('question.answer',question.answer);
+var checkQuestion = function (id, value) {
 
-    if(value === question.answer) {
+    for (var j = 0; j < questions.length; j += 1) {
 
-      console.log('Woo-hoo!');
+      if(questions[j].id === id) {
 
-      var feedback_correct = '<span class="correct">Correct!</span>'
-      
-      score += 1;
+        checkAnswer(questions[j], value);
 
-    } else {
+        return;
 
-      console.log('Try again!');
-
-      var feedback_incorrect = '<span class="incorrect">Try again!</span>'
+      }
 
     }
 
 };
 
-valueFunc(value1, questions[0]);
+var checkAnswer = function (question, value) {
 
-var total = score;
+    var container = document.querySelector('.fruit');
 
-//display ID 1/5
-//display score at the end
+    if(value === question.answer) {
+
+      console.log('Woo-hoo!');
+
+      var feedback_correct = document.createElement('span');
+
+      feedback_correct.setAttribute('class', 'correct');
+      
+      feedback_correct.innerHTML = 'Good job!';
+
+      container.appendChild(feedback_correct);
+      
+    } else {
+
+      var feedback_incorrect = document.createElement('span');
+
+      feedback_incorrect.setAttribute('class', 'incorrect');
+      
+      feedback_incorrect.innerHTML = 'Try again!';
+
+      container.appendChild(feedback_incorrect);
+
+      console.log('Try again!');
+
+    }
+
+};

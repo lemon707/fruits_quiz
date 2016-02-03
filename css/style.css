@@ -48,7 +48,8 @@ html, body {
   position: relative; }
 
 .fruit1 {
-  border: .3em solid #FFC0C0; }
+  border: .3em solid #FFC0C0;
+  display: block; }
 
 .fruit2 {
   border: .3em solid #D8C0FF;
@@ -69,18 +70,18 @@ html, body {
 .question {
   width: 80%;
   position: relative;
-  top: 15%;
+  top: 20%;
   font-size: 1.2em;
   line-height: 1.7em;
   margin: 0 auto;
   text-align: center; }
 
 form {
-  top: 20%;
+  top: 30%;
   position: relative;
   font-size: 1.1em;
   margin: 0 auto;
-  width: 20%; }
+  width: 40%; }
 
 .radio-item {
   display: none; }
@@ -105,15 +106,6 @@ label {
 .radio-item:checked + span::before {
   background-color: #FFC0C0; }
 
-.btn__submit {
-  margin-top: 2.5em;
-  width: 5em;
-  position: absolute;
-  height: 2em;
-  display: block;
-  border: .3em solid #FFC0C0;
-  background-color: #fff; }
-
 .progress {
   position: absolute;
   bottom: 2em;
@@ -127,5 +119,17 @@ footer .container {
 
 .source {
   text-align: center; }
+
+.correct {
+  color: green;
+  position: absolute;
+  bottom: 2em;
+  right: 50%; }
+
+.incorrect {
+  color: red;
+  position: absolute;
+  bottom: 2em;
+  right: 50%; }
 
 /*# sourceMappingURL=style.css.map */
