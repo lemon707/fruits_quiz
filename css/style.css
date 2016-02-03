@@ -43,23 +43,27 @@ html, body {
   margin: 0 auto;
   height: 30em;
   color: #333;
-  margin-top: 5em;
+  margin-top: 7em;
   background-color: #fff; }
 
 .fruit1 {
   border: .3em solid #FFC0C0; }
 
 .fruit2 {
-  border: .3em solid #D8C0FF; }
+  border: .3em solid #D8C0FF;
+  display: none; }
 
 .fruit3 {
-  border: .3em solid #C0EBFF; }
+  border: .3em solid #C0EBFF;
+  display: none; }
 
 .fruit4 {
-  border: .3em solid #C0FFC2; }
+  border: .3em solid #C0FFC2;
+  display: none; }
 
 .fruit5 {
-  border: .3em solid #FFFAC0; }
+  border: .3em solid #FFFAC0;
+  display: none; }
 
 .question {
   width: 80%;
@@ -71,10 +75,48 @@ html, body {
   text-align: center; }
 
 form {
-  top: 30%;
+  top: 25%;
   position: relative;
+  font-size: 1.1em;
   margin: 0 auto;
-  left: 40%; }
+  width: 20%; }
+
+.radio-item {
+  display: none; }
+
+label {
+  display: block;
+  margin-top: 1.2em; }
+
+.radio-item + span::before {
+  position: relative;
+  left: -1em;
+  cursor: pointer;
+  content: '';
+  display: inline-block;
+  float: right;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border: .2em solid #333;
+  transform: translateY(10%); }
+
+.radio-item:checked + span::before {
+  background-color: #FFC0C0; }
+
+.action {
+  position: relative;
+  width: 100%;
+  height: auto; }
+
+.btn__submit {
+  margin-top: 2.5em;
+  width: 5em;
+  position: absolute;
+  height: 2em;
+  display: block;
+  border: .3em solid #FFC0C0;
+  background-color: #fff; }
 
 input {
   margin-top: 1.2em; }

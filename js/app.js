@@ -44,7 +44,7 @@ var valueFunc = function (value, question) {
 
     if(value === question.answer) {
 
-      console.log('Correct!');
+      console.log('Woo-hoo!');
 
       var feedback_correct = '<span class="correct">Correct!</span>'
       
