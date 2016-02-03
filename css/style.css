@@ -44,7 +44,8 @@ html, body {
   height: 30em;
   color: #333;
   margin-top: 7em;
-  background-color: #fff; }
+  background-color: #fff;
+  position: relative; }
 
 .fruit1 {
   border: .3em solid #FFC0C0; }
@@ -68,14 +69,14 @@ html, body {
 .question {
   width: 80%;
   position: relative;
-  top: 20%;
+  top: 15%;
   font-size: 1.2em;
   line-height: 1.7em;
   margin: 0 auto;
   text-align: center; }
 
 form {
-  top: 25%;
+  top: 20%;
   position: relative;
   font-size: 1.1em;
   margin: 0 auto;
@@ -104,11 +105,6 @@ label {
 .radio-item:checked + span::before {
   background-color: #FFC0C0; }
 
-.action {
-  position: relative;
-  width: 100%;
-  height: auto; }
-
 .btn__submit {
   margin-top: 2.5em;
   width: 5em;
@@ -117,6 +113,11 @@ label {
   display: block;
   border: .3em solid #FFC0C0;
   background-color: #fff; }
+
+.progress {
+  position: absolute;
+  bottom: 2em;
+  right: 2em; }
 
 input {
   margin-top: 1.2em; }
