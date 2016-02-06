@@ -44,11 +44,13 @@ document.getElementsByClassName('restart')[0].addEventListener('click', function
 
     changeCard(card);
 
-    var feedback_correct = document.querySelector('.correct');
+    var feedback_correct = document.querySelectorAll('.correct');
 
-    //TODO- does not remove!
+    for(var k = 0; k < feedback_correct.length; k += 1) {
 
-    feedback_correct.parentNode.removeChild(feedback_correct);
+      feedback_correct[k].parentNode.removeChild(feedback_correct[k]);
+    
+    }
 
     options = document.querySelectorAll('input[type="radio"]');
 
@@ -119,9 +121,9 @@ checkQuestion = function (id, value, currentCard) {
 
 };
 
-createFeedback = function(correct) {
+createFeedback = function(correct, cardNum) {
 
-    var container = document.querySelector('.fruit');
+    var container = document.querySelectorAll('.fruit')[cardNum];
 
     var feedback = document.createElement('span');
 
@@ -147,7 +149,17 @@ createFeedback = function(correct) {
 
 checkAnswer = function (question, value, currentCard) {
 
-    var container = document.querySelector('.fruit');
+    var fruitClass = currentCard.classList[1];
+
+    console.log('fruitClass',fruitClass);
+
+    cardNum = parseInt(fruitClass[fruitClass.length-1]) - 1;
+
+    console.log('cardNum',cardNum);
+
+    var container = document.querySelectorAll('.fruit')[cardNum];
+
+    console.log('container',container)
 
     if(value === question.answer) {
 
@@ -161,11 +173,11 @@ checkAnswer = function (question, value, currentCard) {
 
       console.log('Woo-hoo!');
 
-      createFeedback(true);
+      createFeedback(true, cardNum);
 
       //TODO - does not time out! (maybe only at the last question?)
 
-      setTimeout(changeCard(currentCard), 5000);
+      window.setTimeout(changeCard(currentCard), 10000);
       
     } else {
 
@@ -177,7 +189,7 @@ checkAnswer = function (question, value, currentCard) {
 
         console.log('Try again!');
 
-        createFeedback(false);
+        createFeedback(false, cardNum);
         
       }
 
