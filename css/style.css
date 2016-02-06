@@ -38,7 +38,8 @@ html, body {
 .fruit2,
 .fruit3,
 .fruit4,
-.fruit5 {
+.fruit5,
+.fruit6 {
   width: 60%;
   margin: 0 auto;
   height: 30em;
@@ -50,22 +51,38 @@ html, body {
 .fruit1 {
   border: .3em solid #FFC0C0;
   display: block; }
+  .fruit1 .radio-item:checked + span::before {
+    background-color: #FFC0C0; }
 
 .fruit2 {
   border: .3em solid #D8C0FF;
   display: none; }
+  .fruit2 .radio-item:checked + span::before {
+    background-color: #D8C0FF; }
 
 .fruit3 {
   border: .3em solid #C0EBFF;
   display: none; }
+  .fruit3 .radio-item:checked + span::before {
+    background-color: #C0EBFF; }
 
 .fruit4 {
   border: .3em solid #C0FFC2;
   display: none; }
+  .fruit4 .radio-item:checked + span::before {
+    background-color: #C0FFC2; }
 
 .fruit5 {
   border: .3em solid #FFFAC0;
   display: none; }
+  .fruit5 .radio-item:checked + span::before {
+    background-color: #FFFAC0; }
+
+.fruit6 {
+  border: .3em solid #E5E1AC;
+  display: none; }
+  .fruit6 .radio-item:checked + span::before {
+    background-color: #E5E1AC; }
 
 .question {
   width: 80%;
@@ -106,7 +123,7 @@ label {
 .radio-item:checked + span::before {
   background-color: #FFC0C0; }
 
-.progress {
+.progress, .restart {
   position: absolute;
   bottom: 2em;
   right: 2em; }
@@ -124,12 +141,12 @@ footer .container {
   color: green;
   position: absolute;
   bottom: 2em;
-  right: 50%; }
+  right: 40%; }
 
 .incorrect {
   color: red;
   position: absolute;
   bottom: 2em;
-  right: 50%; }
+  right: 40%; }
 
 /*# sourceMappingURL=style.css.map */

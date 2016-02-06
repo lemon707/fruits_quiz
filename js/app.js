@@ -1,57 +1,115 @@
-var questions = [],
-  one = {
+var questions = [{
     id: 'Q1',
     answer: 'blueberries'
   },
-  two = {
+  {
     id: 'Q2',
     answer: 'oranges'
   },
-  three = {
+  {
     id: 'Q3',
     answer: 'grapes'
   },
-  four = {
+  {
     id: 'Q4',
     answer: 'cranberries'
   },
-  five = {
+  {
     id: 'Q5',
     answer: 'strawberries'
-  },
-  score = 0,
-  value = '';
+  }],
 
-questions.push(one);
-questions.push(two);
-questions.push(three);
-questions.push(four);
-questions.push(five);
+  value = '',
+
+  options,
+
+  counter = 0,
+
+  i,
+
+  changeCard,
+
+  changeButtonColor,
+
+  checkQuestion,
+
+  checkAnswer;
 
 
-var options = document.querySelectorAll('input[type="radio"]');
+//restart game;
 
-for (var i = 0; i < options.length; i += 1) {
-  
-  options[i].addEventListener('click', function() {
+document.getElementsByClassName('restart')[0].addEventListener('click', function () {
     
-    var formID = this.parentNode.parentNode.id;
+    var card = this.parentNode;
 
+    changeCard(card);
+
+    var feedback_correct = document.querySelector('.correct');
+
+    //TODO- does not remove!
+
+    feedback_correct.parentNode.removeChild(feedback_correct);
+
+    options = document.querySelectorAll('input[type="radio"]');
+
+    for (i = 0; i < options.length; i += 1) {
+      
+      options[i].checked = false;
+
+    }
+
+});
+
+
+//start game;
+
+options = document.querySelectorAll('input[type="radio"]');
+
+for (i = 0; i < options.length; i += 1) {
+  
+  options[i].addEventListener('click', function () {
+    
     var input = this;
 
-    checkQuestion(formID, this.value);
-  
+    var formID = this.parentNode.parentNode.id;
+
+    var card = this.parentNode.parentNode.parentNode;
+
+    checkQuestion(formID, this.value, card);
+
   });
 
-}
+};
 
-var checkQuestion = function (id, value) {
+changeCard = function (currentCard) {
 
-    for (var j = 0; j < questions.length; j += 1) {
+  var allCards = currentCard.parentNode.children;
+
+  currentCard.style.display = "none";
+
+  if(counter < allCards.length - 1) {
+
+    counter += 1;
+
+  } else {
+
+    counter = 0;
+    
+  }
+
+  allCards[counter].style.display = "block";
+
+};
+
+checkQuestion = function (id, value, currentCard) {
+
+  var j;
+
+    for (j = 0; j < questions.length; j += 1) {
 
       if(questions[j].id === id) {
 
-        checkAnswer(questions[j], value);
+        checkAnswer(questions[j], value, currentCard);
 
         return;
 
@@ -61,34 +119,69 @@ var checkQuestion = function (id, value) {
 
 };
 
-var checkAnswer = function (question, value) {
+createFeedback = function(correct) {
+
+    var container = document.querySelector('.fruit');
+
+    var feedback = document.createElement('span');
+
+    if(correct) {
+
+      feedback.setAttribute('class', 'correct');
+
+      feedback.innerHTML = 'Good job! Next card...';
+
+      container.appendChild(feedback);
+    
+    } else {
+
+        feedback.setAttribute('class', 'incorrect');
+        
+        feedback.innerHTML = 'Hmm... Try again!';
+
+        container.appendChild(feedback);
+
+    }
+
+};
+
+checkAnswer = function (question, value, currentCard) {
 
     var container = document.querySelector('.fruit');
 
     if(value === question.answer) {
 
+      var feedback_incorrect = document.querySelector('.incorrect');
+
+      if(feedback_incorrect) {
+
+        feedback_incorrect.parentNode.removeChild(feedback_incorrect);
+
+      }
+
       console.log('Woo-hoo!');
 
-      var feedback_correct = document.createElement('span');
+      createFeedback(true);
 
-      feedback_correct.setAttribute('class', 'correct');
-      
-      feedback_correct.innerHTML = 'Good job!';
+      //TODO - does not time out! (maybe only at the last question?)
 
-      container.appendChild(feedback_correct);
+      setTimeout(changeCard(currentCard), 5000);
       
     } else {
 
-      var feedback_incorrect = document.createElement('span');
-
-      feedback_incorrect.setAttribute('class', 'incorrect');
+      if(document.querySelector('.incorrect')) {
       
-      feedback_incorrect.innerHTML = 'Try again!';
+        return;
+      
+      } else {
 
-      container.appendChild(feedback_incorrect);
+        console.log('Try again!');
 
-      console.log('Try again!');
+        createFeedback(false);
+        
+      }
 
     }
 
 };
+
