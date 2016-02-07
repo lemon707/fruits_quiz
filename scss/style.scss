@@ -181,3 +181,9 @@ footer .container {
   bottom: 2em;
   right: 40%;
 }
+
+@media (min-width: 600px) {
+  .intro {
+    font-size: 1em;
+  }
+}

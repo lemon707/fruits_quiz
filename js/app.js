@@ -19,9 +19,7 @@ var questions = [{
     answer: 'strawberries'
   }],
 
-  value = '',
-
-  options,
+  container,
 
   counter = 0,
 
@@ -29,59 +27,83 @@ var questions = [{
 
   changeCard,
 
-  changeButtonColor,
-
   checkQuestion,
 
-  checkAnswer;
+  checkAnswer,
+
+  getCard,
+
+  optins,
+
+  restartGame,
+
+  startGame,
+
+  toggleRadio,
+
+  value = '';
 
 
 //restart game;
 
-document.getElementsByClassName('restart')[0].addEventListener('click', function () {
-    
-    var card = this.parentNode;
+restartGame = function() {
 
-    changeCard(card);
-
-    var feedback_correct = document.querySelectorAll('.correct');
-
-    for(var k = 0; k < feedback_correct.length; k += 1) {
-
-      feedback_correct[k].parentNode.removeChild(feedback_correct[k]);
-    
-    }
-
-    options = document.querySelectorAll('input[type="radio"]');
-
-    for (i = 0; i < options.length; i += 1) {
+  document.getElementsByClassName('restart')[0].addEventListener('click', function () {
       
-      options[i].checked = false;
+      var card = this.parentNode;
 
-    }
+      changeCard(card);
 
-});
+      var feedback_correct = document.querySelectorAll('.correct');
 
+      for(var k = 0; k < feedback_correct.length; k += 1) {
 
-//start game;
+        feedback_correct[k].parentNode.removeChild(feedback_correct[k]);
+      
+      }
 
-options = document.querySelectorAll('input[type="radio"]');
+      options = document.querySelectorAll('input[type="radio"]');
 
-for (i = 0; i < options.length; i += 1) {
-  
-  options[i].addEventListener('click', function () {
-    
-    var input = this;
+      for (i = 0; i < options.length; i += 1) {
+        
+        options[i].checked = false;
 
-    var formID = this.parentNode.parentNode.id;
+        options[i].disabled = false;
 
-    var card = this.parentNode.parentNode.parentNode;
+      }
 
-    checkQuestion(formID, this.value, card);
 
   });
 
 };
+
+restartGame();
+
+//start game;
+
+startGame = function() {
+
+  options = document.querySelectorAll('input[type="radio"]');
+
+  for (i = 0; i < options.length; i += 1) {
+    
+    options[i].addEventListener('click', function () {
+      
+      var input = this;
+
+      var formID = this.parentNode.parentNode.id;
+
+      var card = this.parentNode.parentNode.parentNode;
+
+      checkQuestion(formID, this.value, card);
+
+    });
+
+  };
+  
+};
+
+startGame();
 
 changeCard = function (currentCard) {
 
@@ -123,7 +145,7 @@ checkQuestion = function (id, value, currentCard) {
 
 createFeedback = function(correct, cardNum) {
 
-    var container = document.querySelectorAll('.fruit')[cardNum];
+    container = document.querySelectorAll('.fruit')[cardNum];
 
     var feedback = document.createElement('span');
 
@@ -131,7 +153,7 @@ createFeedback = function(correct, cardNum) {
 
       feedback.setAttribute('class', 'correct');
 
-      feedback.innerHTML = 'Good job! Next card...';
+      feedback.innerHTML = 'Good job! Next card coming up...';
 
       container.appendChild(feedback);
     
@@ -149,17 +171,23 @@ createFeedback = function(correct, cardNum) {
 
 checkAnswer = function (question, value, currentCard) {
 
-    var fruitClass = currentCard.classList[1];
+    function getCard (currentCard) {
 
-    console.log('fruitClass',fruitClass);
+      var fruitClass = currentCard.classList[1];
 
-    cardNum = parseInt(fruitClass[fruitClass.length-1]) - 1;
+      console.log('fruitClass',fruitClass);
 
-    console.log('cardNum',cardNum);
+      cardNum = parseInt(fruitClass[fruitClass.length-1]) - 1;
 
-    var container = document.querySelectorAll('.fruit')[cardNum];
+      console.log('cardNum',cardNum);
 
-    console.log('container',container)
+      container = document.querySelectorAll('.fruit')[cardNum];
+
+      console.log('container',container)
+      
+    }
+
+    getCard(currentCard);
 
     if(value === question.answer) {
 
@@ -175,9 +203,13 @@ checkAnswer = function (question, value, currentCard) {
 
       createFeedback(true, cardNum);
 
-      //TODO - does not time out! (maybe only at the last question?)
+      toggleRadio(container);
 
-      window.setTimeout(changeCard(currentCard), 10000);
+      window.setTimeout(function(){
+
+        changeCard(currentCard)
+
+      }, 2000);
       
     } else {
 
@@ -197,3 +229,39 @@ checkAnswer = function (question, value, currentCard) {
 
 };
 
+toggleRadio = function (container) {
+
+  var radios = container.querySelectorAll('input[type=radio]');
+
+  console.log('radios', radios)
+
+  for(var r = 0; r < radios.length; r += 1) {
+
+    if(!radios[r].disabled) {
+
+      radios[r].disabled = true;
+
+    } else {
+
+      radios[r].disabled = false;
+    }
+
+  }
+
+};
+
+getCard = function (currentCard) {
+
+  var fruitClass = currentCard.classList[1];
+
+  console.log('fruitClass',fruitClass);
+
+  cardNum = parseInt(fruitClass[fruitClass.length-1]) - 1;
+
+  console.log('cardNum',cardNum);
+
+  container = document.querySelectorAll('.fruit')[cardNum];
+
+  console.log('container',container)
+
+};
